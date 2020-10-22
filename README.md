@@ -1,4 +1,4 @@
-# IMAU workgroup on Earth System Modelling
+# Earth System Modelling workgroup
 
 The stated aims of this group are:
 * to bring together different groups within IMAU working with ESMs; 
