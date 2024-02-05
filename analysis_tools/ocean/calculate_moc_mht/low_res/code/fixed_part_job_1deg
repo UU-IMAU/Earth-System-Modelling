@@ -1,0 +1,15 @@
+#!/bin/bash 
+# -----------------------------------
+# This script calculates the so called MSF files for all monthly mean POP outputfiles in
+#  a certain directory (tavgdir) containing monthly mean binary POP outputfiles
+# -----------------------------------
+# 
+# In this job an MPI program is started.
+#
+#SBATCH --time=0:2:00   # no more than 2 minutes s needed
+#SBATCH -p genoa
+#SBATCH -n 192
+
+module load 2022 foss/2022a
+module load netCDF/4.9.0-gompi-2022a  netCDF-Fortran/4.6.0-gompi-2022a
+module load ncview/2.1.8-gompi-2022a
