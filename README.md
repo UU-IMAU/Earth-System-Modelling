@@ -6,7 +6,8 @@ The aims of this group are:
 * to facilitate the exchange of simulation data and data analysis scripts;
 * to exchange tips during ESM-for-Lunch meetings. 
 
-The wiki 
+The wiki of this repository serves as entry point: It gives an overview on which information is available where, and provides links. 
+In general, contributors can choose between uploading their controbutions in this repository, or providing a links to, for example, their own repositories. 
 
 
 
