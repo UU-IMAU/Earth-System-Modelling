@@ -12,4 +12,4 @@ In general, contributors can choose between uploading their controbutions in thi
 
 
 ## Organizing team
-[Claudia Wieners](mailto:c.e.wieners@uu.nl), [Michiel Baatsen](mailto:M.L.J.Baatsen@uu.nl) en [Michael Kliphuis](mailto:m.kliphuis@uu.nl)
+[Claudia Wieners](mailto:c.e.wieners@uu.nl), [Michiel Baatsen](mailto:M.L.J.Baatsen@uu.nl) and [Michael Kliphuis](mailto:m.kliphuis@uu.nl)
