@@ -1,1 +1,1 @@
-Here you can find and upload scripts for analysing atmosphere data. 
+Here you can find and share scripts for analysing atmosphere data. 
