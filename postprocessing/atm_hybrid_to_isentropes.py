@@ -10,6 +10,7 @@ maintenance of potential vorticity in isentropic coordinates. Edouard et al.
 Q.J.R Meteorol. Soc. (1997), 123, pp 2069-2094".
 
 Currently only handles single-time stamp files.
+Contact: j.dejong3@uu.nl
 """
 
 import xarray as xr
