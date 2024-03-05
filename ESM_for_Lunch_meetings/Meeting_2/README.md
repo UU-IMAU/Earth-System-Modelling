@@ -1,1 +1,1 @@
-From logging into Snellius to vertically integrating atmospheric CESM data: a complete example for starting with climate data analysis.
+From logging into Snellius to vertically integrating atmospheric CESM data: a complete example for starting with climate data analysis. The interpolation scripts can be found here: https://github.com/UU-IMAU/Earth-System-Modelling/blob/master/postprocessing/atm_hybrid_to_pressure.py
