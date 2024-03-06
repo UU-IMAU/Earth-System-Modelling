@@ -50,7 +50,7 @@ def main():
 	
 	Data should be sorted such that pressure and lev (core dim) are increasing.
 	"""
-    ds = xr.open_mfdataset(inputfiles) # need a recent version of xarray 
+    ds = xr.open_mfdataset(inputfiles, parallel=True) # need a recent version of xarray 
     pres = (ds.hyam * ds.P0 + ds.hybm * ds.PS) # full 3D pressure  
     ds = ds.assign_coords({'plev':np.array(lvls_p, dtype='float64')*100})
     ds.plev.attrs.update({'units':'Pa'})
