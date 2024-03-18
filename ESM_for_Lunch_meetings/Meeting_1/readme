@@ -1,3 +1,5 @@
-Best practices (and counterexamples)  for making your model data and scripts Findable, Accessible, Interoperational and Reusable on GitHUB.
+Best practices (and counterexamples)  for making your model data and scripts Findable, Accessible, Interoperational and Reusable (FAIR) on GitHUB.
 
 René's GitHUB repository for the paper he showed is here: https://github.com/RenevanWesten/SA-AMOC-Collapse 
+
+A UU-tool for self-evaluating the FAIRness of your data is available here: https://survey.uu.nl/jfe/form/SV_8wcnLqOlaWMnsVg
