@@ -1,0 +1,28 @@
+#!/bin/bash
+#$ -S /bin/bash      # name of the used shell  
+#$ -V                # copies your current (main node) settings to compute nodes
+#$ -N RCP85         # name of the job
+#$ -pe mpich 8       # number of cores to run on (< 8 when mpich is used)
+#$ -l h_rt=05:00:00  # reserved time on the nodes in hh:mm:ss 
+#$ -cwd              # execute job in current working directory
+
+EXP=RCP85    # Name your experiment here
+[ $# == 1 ] && cd $1
+#rm -f plasim_restart
+rm -f Abort_Message
+YEAR=0
+YEARS=200     # number of years to run
+while [ $YEAR -lt $YEARS ]
+do
+   YEAR=`expr $YEAR + 1`
+   DATANAME=`printf '%s.%03d' $EXP $YEAR`
+   DIAGNAME=`printf '%s_DIAG.%03d' $EXP $YEAR`
+   RESTNAME=`printf '%s_REST.%03d' $EXP $YEAR`
+   python3 CO2_scenario.py $YEAR
+   mpirun -np $NSLOTS most_plasim_t21_l10_p8.x
+   [ -e Abort_Message ] && exit 1
+   [ -e plasim_output ] && mv plasim_output $DATANAME
+   [ -e plasim_diag ] && mv plasim_diag $DIAGNAME
+   [ -e plasim_status ] && cp plasim_status plasim_restart
+   [ -e plasim_status ] && mv plasim_status $RESTNAME
+done
