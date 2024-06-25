@@ -1,1 +1,1 @@
-
+Andrea di Benedetto explains a low-cost way of couling two parallel processes using FIFO, based on an example of climate-economy modelling (expanding a 1-country model into two communicating countries). 
