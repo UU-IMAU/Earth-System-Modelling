@@ -69,6 +69,6 @@ tail -f slurm-123456.out
 If you want to run calc_moc.sc multiple times in sequence and calculate all monthly files of specific years you can use:
 
 ```
-./calc_moc_many.sc
+sbatch calc_moc_many.sc
 ```
 
