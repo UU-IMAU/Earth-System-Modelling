@@ -1,48 +1,74 @@
-# Introduction 
+# Introduction
 
-  `calc_moc.sc` is a csh script that calculates a so called MSF file for a monthly mean POP outputfile.
+`calc_moc.sc` is a **C-shell script** that calculates an *MSF (Meridional Stream Function)* file from a **monthly mean POP output file**.
 
-  The generated MSF file contains the following fields:
+The generated MSF file contains the following fields:
 
-    MHTG    Mean meridional heat transport Global i.e. world in PetaWatts
-    MHTA    Mean meridional heat transport Atlantic in PetaWatts
-    MHTIP   Mean meridional heat transport IndoPacific in PetaWatts
-    TMTG    Meridional overturning streamfunction Global i.e. world in Sv
-    TMTA    Meridional overturning streamfunction Atlantic in Sv
-    TMTIP   Meridional overturning streamfunction IndoPacific in Sv
+| Field  | Description | Units |
+|---------|--------------|--------|
+| **MHTG**  | Mean meridional heat transport (Global, i.e., total ocean) | PetaWatts |
+| **MHTA**  | Mean meridional heat transport (Atlantic) | PetaWatts |
+| **MHTIP** | Mean meridional heat transport (Indo-Pacific) | PetaWatts |
+| **TMTG**  | Meridional overturning streamfunction (Global, i.e., total ocean) | Sverdrups (Sv) |
+| **TMTA**  | Meridional overturning streamfunction (Atlantic) | Sverdrups (Sv) |
+| **TMTIP** | Meridional overturning streamfunction (Indo-Pacific) | Sverdrups (Sv) |
+
+---
 
 # Usage
 
-  `calc_moc.sc` calls the fortran program `calculate_msf_cesm.f` which does the actual calculation of the MOC.
-  Before using `calc_moc.sc` you first need to compile this fortran program. Do this by first loading the needed modules by typing:
+`calc_moc.sc` calls the Fortran program [`calculate_msf_cesm.f`](code/calculate_msf_cesm.f), which performs the actual MOC (Meridional Overturning Circulation) calculation.
 
+Before using `calc_moc.sc`, you must **compile** the Fortran program.
+
+### 1. Load required modules
+
+```
 module purge
 module load 2023
 module load intel/2023a
 module load netCDF/4.9.2-iimpi-2023a
 module load netCDF-Fortran/4.6.1-iimpi-2023a
+```
 
-Then do the actual compilation by typing:
+### 2. Compile the program
 
-`cd code`
-`ifort -O3 -extend-source -convert big_endian -o calculate_msf_cesm calculate_msf_cesm.f -lnetcdf -lnetcdff`
+```
+cd code
+ifort -O3 -extend-source -convert big_endian \
+  -o calculate_msf_cesm calculate_msf_cesm.f \
+  -lnetcdf -lnetcdff
+```
 
-  After that usage is easy, just type on the commandline e.g.:
+### 3. Run the script
 
-  `./calc_moc.sc /projects/0/prace_imau/prace_2013081679/cesm1_0_4/f05_t12/spinup_pd_maxcores_f05_t12/OUTPUT/ocn/hist/monthly/spinup_pd_maxcores_f05_t12.pop.h.0300-01.nc`
+After compilation, you can easily run the tool from the command line, for example:
 
-  The tool then calculates the MSF fields based on the UVEL and VVEL fields in the POP output file `spinup_pd_maxcores_f05_t12.pop.h.0300-01.nc`
-  
-  Check if the job is running by typing:  
-  
-  `mysqueue`
+```
+./calc_moc.sc /projects/0/prace_imau/prace_2013081679/cesm1_0_4/f05_t12/spinup_pd_maxcores_f05_t12/OUTPUT/ocn/hist/monthly/spinup_pd_maxcores_f05_t12.pop.h.0300-01.nc
+```
 
-  You can follow the evolution of the job by 'tailing' the `slurm-xxxxxx.out` (e.g. `slurm-123456.out`)
-  job log file. Do this by typing:  
-  
-  `tail -f slurm-123456.out`
+The tool calculates the MSF fields based on the UVEL and VVEL fields in the specified POP output file.
 
-  If you want to run `./calc_moc.sc` many times after each other then type e.g.
+### 4. Monitoring the Job
 
-  `./calc_moc_many.sc`
+You can check if the job is running using:
+
+```
+mysqueue
+```
+
+To monitor progress, follow the job’s output file (e.g., slurm-123456.out):
+
+```
+tail -f slurm-123456.out
+```
+
+### 5. Running Multiple Jobs
+
+If you want to run calc_moc.sc multiple times in sequence and calculate all monthly files of specific years you can use:
+
+```
+./calc_moc_many.sc
+```
 
